@@ -1,0 +1,80 @@
+{% extends "enroll/base.html" %}
+{% block content%}
+<div class="jumbotron border shadow">
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <form>
+                <div class="input-group">
+                    <form action="{% url 'search_donor' %}" method="get">
+                        <input name="search_donor" type="text" placeholder="Blood Group or Address" class="form-control form-control-lg"/>
+                    </form>
+                    <div class="input-group-append">
+                    
+                        <button type="submit" class="btn btn-dark btn-lg">Search Donor</button>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div >
+    <h4 class="text center alert alert-info">List of Donor</h4>
+    <form >
+    {% if search %}
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Donor ID</th>
+                <th scope="col">Donor Name</th>
+                <th scope="col">Donor Email</th>
+                <th scope="col">Donor DOB</th>
+                <th scope="col">Donor Gender</th>
+                <th scope="col">Donor Phone</th>
+                <th scope="col">Donor Address</th>
+                <th scope="col">Donor Blood group</th>
+                <th scope="col">Notification</th>
+                                   
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in search %}
+            <tr>
+                <th scope="row">{{s.id}}</th>
+                <th scope="row">{{s.donor_name}}</th>
+                <th scope="row">{{s.donor_email}}</th>
+                <th scope="row">{{s.donor_DOB}}</th>
+                <th scope="row">{{s.donor_gender}}</th>
+                <th scope="row">{{s.donor_phone}}</th>
+                <th scope="row">{{s.donor_address}}</th>
+                <th scope="row">{{s.donor_blood_group}}</th>
+                <td>
+                    <a href="{% url 'sendMail'%}" class="btn btn-success btn-sm">Send Request</a>
+            
+                </td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    <div>
+    <span>
+        {% if search.has_previous %}
+        <a href="?page={{search.previous_page_number}}">Previous</a>
+        {% endif %}
+    
+    <span>{{ search.number }}</span>
+        {% if search.has_next %}
+        <a href="?page={{search.next_page_number}}">Next</a>
+        {% endif %}
+    </span>
+    </div>
+    {% else %}
+    <h4 class="text center alert alert-warning">No Donor Records</h4>
+    {% endif %}
+    </form>
+</div>
+
+{% endblock content %}

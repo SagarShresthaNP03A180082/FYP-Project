@@ -1,0 +1,56 @@
+{% extends "enroll/base.html" %}
+{% block content%}
+
+    <div >
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Donor Details</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+            {% if donor_list %}
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+            <thead>
+                <tr>
+                    <th scope="col">Donor ID</th>
+                    <th scope="col">Donor Name</th>
+                    <th scope="col">Donor Email</th>
+                    <th scope="col">Donor DOB</th>
+                    <th scope="col">Donor Gender</th>
+                    <th scope="col">Donor Phone</th>
+                    <th scope="col">Donor Address</th>
+                    <th scope="col">Donor Blood group</th>
+                    <th scope="col">Action</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for list in donor_list %}
+                <tr>
+                    <th scope="row">{{list.id}}</th>
+                    <th scope="row">{{list.donor_name}}</th>
+                    <th scope="row">{{list.donor_email}}</th>
+                    <th scope="row">{{list.donor_DOB}}</th>
+                    <th scope="row">{{list.donor_gender}}</th>
+                    <th scope="row">{{list.donor_gender}}</th>
+                    <th scope="row">{{list.donor_address}}</th>
+                    <th scope="row">{{list.donor_blood_group}}</th>
+                    <td>
+                        
+                        <a href="{% url 'update_donor' list.id %}" class="btn btn-success btn-sm">Edit</a>
+                
+                        <form action="{% url 'delete_donor' list.id %}" method="POST" class="d-inline"> {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                    </td>
+                    
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+        {% else %}
+        <h4 class="text center alert alert-warning">No Donor Records</h4>
+        {% endif %}
+        </form>
+    </div>
+{% endblock content %}

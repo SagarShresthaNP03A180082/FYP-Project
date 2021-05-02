@@ -1,0 +1,11 @@
+form.py
+
+widgets = {
+            'donor_name': forms.TextInput(attrs={'class':'form-control'}),
+            'donor_email': forms.EmailField(attrs={'class':'form-control'}),
+            'donor_DOB': forms.DateField(attrs={'class':'form-control'}),
+            'donor_gender': forms.TextInput(attrs={'class':'form-control'}),
+            'donor_phone': forms.TextInput(attrs={'class':'form-control'}),
+            'donor_address': forms.TextInput(attrs={'class':'form-control'}),
+            'donor_blood_group': forms.TextInput(attrs={'class':'form-control'}),
+        }

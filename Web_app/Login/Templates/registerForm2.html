@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+        <form action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+            <label class="col-sm-2 col-form-label">First Name:</label>  
+            <input id="fname" name="first_name" type="text" placeholder="First Name" class="form-control">
+            <label class="col-sm-2 col-form-label">Last Name:</label>  
+            <input id="lname" name="last_name" type="text" placeholder="Last Name" class="form-control">
+            <label class="col-sm-2 col-form-label">Email:</label>  
+            <input id="name" name="email" type="email" placeholder="Email" class="form-control">
+            <label class="col-sm-2 col-form-label">username:</label>  
+            <input id="name" name="username" type="text" placeholder="username" class="form-control">
+            <label class="col-sm-2 col-form-label">Password:</label>  
+            <input id="name" name="password1" type="password" placeholder="Password" class="form-control">
+            <label class="col-sm-2 col-form-label">Confirm Password:</label>  
+             <input id="name" name="password2" type="password" placeholder="Confirm Password" class="form-control">
+                    
+                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            
+        </form>
+</body>
+        
+    {% for message in messages %}
+    <h6> {{message}} </h6>
+    {% endfor %}
+
+</html>
+    
